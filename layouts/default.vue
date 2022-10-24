@@ -1,6 +1,6 @@
 <template>
 <div>  
-    <Navbar/>
+    <LazyNavbar/>
     <main class="w-full p-6 bg-transparent">
       <div>
         <Nuxt />

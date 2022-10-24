@@ -1,15 +1,13 @@
 <template>
-    <div class="empty-layout" >
+  <div class="empty-layout">
     <nuxt />
-    </div>
-
+  </div>
 </template>
 
 <style scoped>
-.empty-layout{
-    
-    display: flex;
-    justify-content: center;
-    padding-top: 5rem;
+.empty-layout {
+  display: flex;
+  justify-content: center;
+  padding-top: 5rem;
 }
 </style>

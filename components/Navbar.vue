@@ -4,7 +4,7 @@
 
       <!-- Header logo -->
       <div>
-        logo
+        <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
         <!-- <Tailwind /> -->
       </div>
 
@@ -24,10 +24,16 @@
       <!-- Navbar -->
       <div class="hidden md:block">
         <ul class="flex space-x-8 text-sm font-sans">
-          <li><nuxt-link to="/" exact no-prefetch  active-class=" border-b-2 border-blue-500 pb-1">Home</nuxt-link></li>
-          <li><nuxt-link to="/about" no-prefetch   active-class=" border-b-2 border-blue-500 pb-1">About</nuxt-link></li>
-          <li><nuxt-link to="/users" no-prefetch   active-class=" border-b-2 border-blue-500 pb-1">Users</nuxt-link></li>
-          <li><nuxt-link to="/login" class="cta bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded text-white font-semibold">Sign Up</nuxt-link></li>
+          <li><NuxtLink to="/" exact no-prefetch  active-class=" border-b-2 border-blue-500 pb-1">Home</NuxtLink></li>
+          <li><NuxtLink to="/about" no-prefetch   active-class=" border-b-2 border-blue-500 pb-1">Выполненые проекты</NuxtLink></li>
+          <li><NuxtLink to="/fun" no-prefetch   active-class=" border-b-2 border-blue-500 pb-1">показывать при авторизации</NuxtLink></li>
+          <li><NuxtLink to="/users" no-prefetch   active-class=" border-b-2 border-blue-500 pb-1">Users</NuxtLink></li>
+          <li v-if="!hasToken"><NuxtLink to="/login" class="cta bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded text-white font-semibold">Sign Up</NuxtLink></li>
+          <li v-else> 
+            <a @click.prevent="logout" class="cta bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded text-white font-semibold" href="#">
+              logout
+            </a>
+          </li>
         </ul>
       </div>
 
@@ -61,15 +67,15 @@
         </div>
 
         <span @click="isOpen = false" class="flex w-full items-center p-4 border-b">
-          logo
+          <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
           <!-- <Tailwind /> -->
         </span>
 
         <ul class="divide-y font-sans">
-          <li><nuxt-link to="/"  @click="isOpen = false" exact no-prefetch active-class="active border-b-2 border-blue-500 pb-1" class="my-4 inline-block">Home</nuxt-link></li>
-          <li><nuxt-link to="/about" @click="isOpen = false" active-class="active border-b-2 border-blue-500 pb-1" >About</nuxt-link></li>
-          <li><nuxt-link to="/users" @click="isOpen = false" active-class="active border-b-2 border-blue-500 pb-1" >Users</nuxt-link></li>
-          <li><nuxt-link to="/login" @click="isOpen = false" class="my-8 w-full text-center font-semibold cta inline-block bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded text-white">Sign Up</nuxt-link></li>
+          <li><NuxtLink  to="/"  @click="isOpen = false" exact no-prefetch active-class="active border-b-2 border-blue-500 pb-1" class="my-4 inline-block">Home</NuxtLink></li>
+          <li><NuxtLink  to="/about" @click="isOpen = false" active-class="active border-b-2 border-blue-500 pb-1" >About</NuxtLink></li>
+          <li ><NuxtLink  to="/users" @click="isOpen = false" active-class="active border-b-2 border-blue-500 pb-1" >Users</NuxtLink></li>
+          <li ><NuxtLink  to="/login" @click="isOpen = false" class="my-8 w-full text-center font-semibold cta inline-block bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded text-white">Sign Up</NuxtLink></li>
         </ul>
 
         <div class="follow">
@@ -127,9 +133,19 @@ export default {
       isOpen: false
     };
   },
+  computed:{
+    hasToken(){
+      return this.$store.getters.hasToken
+    }
+  },
   methods: {
     drawer() {
       this.isOpen = !this.isOpen;
+    },
+ 
+    logout(){
+      this.$store.dispatch('logout')
+      this.$router.push('/login')
     }
   },
   watch: {
