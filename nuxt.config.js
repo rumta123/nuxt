@@ -1,7 +1,7 @@
 export default {
-  // server: {
-  //   host: '0.0.0.0'
-  // },
+  server: {
+    host: 'http://ovz1.rum44.0n03n.vps.myjino.ru:49245'
+  },
   // mode: 'universal',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
