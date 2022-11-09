@@ -1,6 +1,6 @@
 export default {
   server: {
-    port: 49245,
+    port: 80,
     host: 'http://ovz1.rum44.0n03n.vps.myjino.ru',
   },
   mode: 'universal',
